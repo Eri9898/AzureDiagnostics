@@ -65,7 +65,21 @@ Enter whicheverway of contact you prefer and name the alert CPU. Click Create ah
 </p>
 <br />
 8. Now it's time to test the alert! RDP into your VM and open command line.
- 
+</p>
+<br />
+9. Now we will set up monitoring for the disk and memory. Azure can already track the CPU from the host but for tracking the disk and memory we will need
+to set up the Azure Monitor Agent (AMA). 
+</p>
+<br />
+<img src="https://imgur.com/aFCNhZH.png" alt="Azurelogo"/>
+</p>
+<br />
+10. So before doing that, you will have to create a log analyticss workspace.
+so search it up in Azure. Select your subscription and make sure it has the same resource group and region as your VM.
+</p>
+<br />
+11. Now install the AMA. So go back to your VM, on the left menu go to settings > Extensions + Applications.
+
 
 
 

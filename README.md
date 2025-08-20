@@ -14,13 +14,33 @@ How to monitor your online environment <br />
 <img src="https://imgur.com/bWyM5m1.png" alt="Azurelogo"/>
 </p>
 <br />
+1. enable Insights on the VM. Click on your VM on the left menu click monittoring > Insights > Click enable
+Refresh and you shoudd be sble to see performance charts.
+ Once that’s there you’ll have access to Memory and Disk metrics in Metrics/Alerts.
+ </p>
+<br />
+<img src="https://imgur.com/bWyM5m1.png" alt="Azurelogo"/>
+</p>
+<br />
+2. Search up log analytics workspace and create one for your selected VM.
+Make sure it has the same resource group and region as your VM!!
+Then go to go to your VM → Extensions + applications. THe AzureMonitorWindowsAgent extension should be installed
+
+<img src="https://imgur.com/bWyM5m1.png" alt="Azurelogo"/>
+</p>
+<br />
 1. We will be creating alerts for the CPU< memory, and disks. So go to your VM and head into Monitoring> Metrics.
   </p>
 <br />
 <img src="https://imgur.com/6s9xfvz.png" alt="Metrics"/>
 </p>
 <br />
-2. Next you will set up your metric chart. 
+3. The next step would be to create alerts for the CPU, Disk and Memory.
+In the Azure Portal, go to your VM.
+On the left menu, under Monitoring, click Alerts.
+Click Create >Alert rule.
+  
+((2. Next you will set up your metric chart. 
   Scope: Your VM
   Metric namespace: pick Virtual Machine Host
   Metric: pick Percentage CPU
@@ -31,13 +51,14 @@ How to monitor your online environment <br />
 </p>
 <br />
 <img src="https://imgur.com/HK096qu.png" alt="CreateAlert"/>
-</p>
+</p>))
 <br />
 4. Click create at the top then alert rule.
-Pick Percentage CPU metric again.
-In the condition tab:
+Pick Percentage CPU metric again.)
+
+4. In the condition tab:
     Signal name: Percentage CPU
-    Vale is: Greater than
+    Value is: Greater than
     Threshold: 80%
     Look back period: 5 minutes
     Check every: 1 minute
@@ -49,7 +70,7 @@ In the condition tab:
 5. Next go to the Actions tab. 
 Next to Select Actions, select Use Action Groups.
 Then click create Action Group at the top.
-Make syr the subscription and resource group you want is selected.
+Make sur the subscription and resource group you want is selected.
 Create an Action Group name and Display Name.
 </p>
 <br />
@@ -64,21 +85,11 @@ Enter whicheverway of contact you prefer and name the alert CPU. Click Create ah
 7. Stay within the rule creation tab and go to details. and choose your severity level from level 4 (low) to zero (critical).
 </p>
 <br />
-8. Now it's time to test the alert! RDP into your VM and open command line.
 </p>
 <br />
 9. Now we will set up monitoring for the disk and memory. Azure can already track the CPU from the host but for tracking the disk and memory we will need
 to set up the Azure Monitor Agent (AMA). 
-</p>
-<br />
-<img src="https://imgur.com/aFCNhZH.png" alt="Azurelogo"/>
-</p>
-<br />
-10. So before doing that, you will have to create a log analyticss workspace.
-so search it up in Azure. Select your subscription and make sure it has the same resource group and region as your VM.
-</p>
-<br />
-11. Now install the AMA. So go back to your VM, on the left menu go to settings > Extensions + Applications.
+10.
 
 
 

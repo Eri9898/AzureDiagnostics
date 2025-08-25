@@ -65,13 +65,55 @@ Enter whichever way of contact you prefer and name the alert CPU. Click Create a
 7. Stay within the rule creation tab and go to details. and choose your severity level from level 4 (low) to zero (critical).
 </p>
 <br />
+<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
 </p>
 <br />
-8. Now we will set up monitoring for the disk next. Azure can already track the CPU from the host but for tracking the disk and memory we will need
-to set up the Azure Monitor Agent (AMA). 
+8. Now we will set up monitoring for the memory next. Go to alerts again> create> alert rule.
+next. 
 </p>
 <br />
-9.
+<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
+</p>
+<br />
+9. In the scope tab make sure your VM is selected and you hae the cprrect resource group selected. Then iin the condition tab your
+signal : Available Memory PErcentage
+Value is: Less than
+Threshold: 20%
+Check every: 1 min
+Loopback period: 5 mins
+</p>
+<br />
+<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
+</p>
+<br />
+10. GO to the actions tab and add to the same action group as your other alert. And give the alert a name which would be "memory". Then select your notif type. THen  in the details tab seleect your severity, and Alert Rule name. THen review and create!
+</p>
+<br />
+<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
+</p>
+<br />
+11. Now we will set up an alert for the disk. So once more go to monitoring> alerts> Create> alert rule. In the conmndition tab
+signal type: VM Free Disk Space
+operator: Less than
+Threshold value: 10%
+Freq of evaluation: 5 mina
+</p>
+<br />
+12. In the actions tab select the ame action group, notification type and select an alert name.
+</p>
+<br />
+13. In the detail tab select critical severity, name your alert "disk". Then review and create
+</p>
+<br />
+14. You should have three alerts that monitor:
+    CPU over 80% (spikes)
+    Memory under 20% (running low)
+    Disk free space under 10% (almost full)
+    and it's time to test if they work!
+</p>
+<br />
+
+
 
 
 

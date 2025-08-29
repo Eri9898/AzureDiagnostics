@@ -112,6 +112,73 @@ Freq of evaluation: 5 mina
     and it's time to test if they work!
 </p>
 <br />
+<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
+</p>
+<br />
+15. First let's test the CPU. Remote Desktop (RDP) into your VM.
+Open PowerShell as Administrator.
+Paste this command to max out CPU:
+Start-Job { while ($true) { [Math]::Sqrt(12345) } }
+</p>
+<br />
+<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
+</p>
+<br />
+16. This runs an infinite loop doing math. Open Task Manager and watch CPU skyrocket to 80–100%.
+</p>
+<br />
+17. Leave it running for about 10 minutes so Azure metrics can collect it.
+Check Azure Alerts and You should see HighCPU fire..
+</p>
+<br />
+<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
+</p>
+<br />
+18. Stop the CPU with:
+Get-Job | Stop-Job | Remove-Job
+</p>
+<br />
+<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
+</p>
+<br />
+19. Now we will test memory. So open command line again as an admin and paste this:
+$a = @()
+for ($i=0; $i -lt 100000; $i++) {
+    $a += New-Object Byte[] (10MB)
+}
+</p>
+<br />
+20.  This slowly eats up memory.
+Watch Task Manager, Memory climbs until it passes your threshold (below 20% free).
+</p>
+<br />
+<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
+</p>
+<br />
+21. After a few minutes the low memory alert should fire.
+</p>
+<br />
+22. To stop simply restart the VM. 
+</p>
+<br />
+23. Now we will test the disk. So create a temp fie named in your local drive called "Temp"
+</p>
+<br />
+24. Run this in Command Line
+fsutil file createnew C:\temp\bigfile.txt 5000000000
+</p>
+<br />
+25. This  Creates a 5GB dummy file instantly. Repeat until disk space < 10%. Azure should trigger LowDiskSpace.
+</p>
+<br />
+26. Cleanup: Delete those dummy files with:
+    Remove-Item C:\temp\bigfile.txt
+
+
+    
+
+
+
 
 
 

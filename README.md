@@ -65,14 +65,11 @@ Enter whichever way of contact you prefer and name the alert CPU. Click Create a
 7. Stay within the rule creation tab and go to details. and choose your severity level from level 4 (low) to zero (critical).
 </p>
 <br />
-<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
-</p>
-<br />
 8. Now we will set up monitoring for the memory next. Go to alerts again> create> alert rule.
 next. 
 </p>
 <br />
-<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
+<img src="https://imgur.com/tPd2BzJ.png" alt="Azurelogo"/>
 </p>
 <br />
 9. In the scope tab make sure your VM is selected and you hae the cprrect resource group selected. Then iin the condition tab your
@@ -83,13 +80,7 @@ Check every: 1 min
 Loopback period: 5 mins
 </p>
 <br />
-<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
-</p>
-<br />
 10. GO to the actions tab and add to the same action group as your other alert. And give the alert a name which would be "memory". Then select your notif type. THen  in the details tab seleect your severity, and Alert Rule name. THen review and create!
-</p>
-<br />
-<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
 </p>
 <br />
 11. Now we will set up an alert for the disk. So once more go to monitoring> alerts> Create> alert rule. In the conmndition tab
@@ -112,16 +103,13 @@ Freq of evaluation: 5 mina
     and it's time to test if they work!
 </p>
 <br />
-<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
+<img src="https://imgur.com/aWgunBF.png" alt="Azurelogo"/>
 </p>
 <br />
 15. First let's test the CPU. Remote Desktop (RDP) into your VM.
 Open PowerShell as Administrator.
 Paste this command to max out CPU:
 Start-Job { while ($true) { [Math]::Sqrt(12345) } }
-</p>
-<br />
-<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
 </p>
 <br />
 16. This runs an infinite loop doing math. Open Task Manager and watch CPU skyrocket to 80–100%.
@@ -131,14 +119,14 @@ Start-Job { while ($true) { [Math]::Sqrt(12345) } }
 Check Azure Alerts and You should see HighCPU fire..
 </p>
 <br />
-<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
+<img src="https://imgur.com/6RkFJfy.png" alt="Azurelogo"/>
 </p>
 <br />
 18. Stop the CPU with:
 Get-Job | Stop-Job | Remove-Job
 </p>
 <br />
-<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
+<img src="https://imgur.com/5WOzIgE.png" alt="Azurelogo"/>
 </p>
 <br />
 19. Now we will test memory. So open command line again as an admin and paste this:
@@ -152,9 +140,6 @@ for ($i=0; $i -lt 100000; $i++) {
 Watch Task Manager, Memory climbs until it passes your threshold (below 20% free).
 </p>
 <br />
-<img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
-</p>
-<br />
 21. After a few minutes the low memory alert should fire.
 </p>
 <br />
@@ -164,8 +149,14 @@ Watch Task Manager, Memory climbs until it passes your threshold (below 20% free
 23. Now we will test the disk. So create a temp fie named in your local drive called "Temp"
 </p>
 <br />
+<img src="https://imgur.com/YUvWn3D.png" alt="Azurelogo"/>
+</p>
+<br />
 24. Run this in Command Line
 fsutil file createnew C:\temp\bigfile.txt 5000000000
+</p>
+<br />
+<img src="https://imgur.com/pRS3h7w.png" alt="Azurelogo"/>
 </p>
 <br />
 25. This  Creates a 5GB dummy file instantly. Repeat until disk space < 10%. Azure should trigger LowDiskSpace.

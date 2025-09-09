@@ -5,7 +5,7 @@ How to monitor your online environment
 </p>
 
 <h1>AzureDiagnostics</h1>
-How to monitor your online environment <br />
+This tutorial demonstrates setting up Azure Monitor with actionable alerts (CPU, Memory, Disk) on a Windows Server VM, including stress-testing to verify alert functionality. <br />
 </p>
 <br />
 <h2>Azure Monitor Metrics + Alerts </h2>
@@ -14,7 +14,7 @@ How to monitor your online environment <br />
 <img src="https://imgur.com/FvvvxTb.png" alt="Azurelogo"/>
 </p>
 <br />
-1. enable Insights on the VM. Click on your VM on the left menu click monittoring > Insights > Click enable
+1. enable Insights on the VM. Click on your VM on the left menu click monitoring > Insights > Click enable
 Refresh and you shoudd be sble to see performance charts.
  Once that’s there you’ll have access to Memory and Disk metrics in Metrics/Alerts.
  </p>
@@ -24,10 +24,10 @@ Refresh and you shoudd be sble to see performance charts.
 <br />
 2. Search up log analytics workspace and create one for your selected VM.
 Make sure it has the same resource group and region as your VM!!
-Then go to go to your VM → Extensions + applications. THe AzureMonitorWindowsAgent (AMA) extension should be installed. Azure can already track the CPU from the host but for tracking the disk and memory we will need the AMA ext.
+Then go to go to your VM > Extensions + applications. The Azure Monitor Windows Agent (AMA) extension should be installed. Azure can already track the CPU from the host but for tracking the disk and memory we will need the AMA ext.
 </p>
 <br />
-3. The next step would be to create alerts for the CPU. We will do the  Disk and Memory afterwwards.
+3. The next step would be to create alerts for the CPU. We will do the Disk and Memory afterwards.
 In the Azure Portal, go to your VM.
 On the left menu, under Monitoring, click Alerts.
 Click Create >Alert rule.
@@ -56,13 +56,13 @@ Create an Action Group name and Display Name.
 <br />
 6. Now go to the Notifications Tab
 For notif type select: Email/SMS/Push/Voice
-Enter whichever way of contact you prefer and name the alert CPU. Click Create ahd you should recieve a notif from Azure.
+Enter whichever way of contact you prefer and name the alert CPU. Click Create and you should recieve a notif from Azure.
 </p>
 <br />
 <img src="https://imgur.com/5XSkCYH.png" alt="Azurelogo"/>
 </p>
 <br />
-7. Stay within the rule creation tab and go to details. and choose your severity level from level 4 (low) to zero (critical).
+7. Stay within the rule creation tab and go to details. Choose your severity level from level 4 (low) to zero (critical).
 </p>
 <br />
 8. Now we will set up monitoring for the memory next. Go to alerts again> create> alert rule.
@@ -72,25 +72,25 @@ next.
 <img src="https://imgur.com/tPd2BzJ.png" alt="Azurelogo"/>
 </p>
 <br />
-9. In the scope tab make sure your VM is selected and you hae the cprrect resource group selected. Then iin the condition tab your
-signal : Available Memory PErcentage
+9. In the scope tab make sure your VM is selected and you have the correct resource group selected. Then in the condition tab your
+signal : Available Memory Percentage
 Value is: Less than
 Threshold: 20%
 Check every: 1 min
 Loopback period: 5 mins
 </p>
 <br />
-10. GO to the actions tab and add to the same action group as your other alert. And give the alert a name which would be "memory". Then select your notif type. THen  in the details tab seleect your severity, and Alert Rule name. THen review and create!
+10. Go to the actions tab and add it to the same action group as your other alert. And give the alert a name which would be "memory". Then select your notif type. Then  in the details tab select your severity, and alert rule name. Then review and create!
 </p>
 <br />
-11. Now we will set up an alert for the disk. So once more go to monitoring> alerts> Create> alert rule. In the conmndition tab
-signal type: VM Free Disk Space
-operator: Less than
+11. Now we will set up an alert for the disk. So once more go to monitoring> alerts> create> alert rule. In the condition tab
+Signal type: VM Free Disk Space
+Operator: Less than
 Threshold value: 10%
 Freq of evaluation: 5 mina
 </p>
 <br />
-12. In the actions tab select the ame action group, notification type and select an alert name.
+12. In the actions tab select the same action group, notification type and select an alert name.
 </p>
 <br />
 13. In the detail tab select critical severity, name your alert "disk". Then review and create
@@ -116,7 +116,7 @@ Start-Job { while ($true) { [Math]::Sqrt(12345) } }
 </p>
 <br />
 17. Leave it running for about 10 minutes so Azure metrics can collect it.
-Check Azure Alerts and You should see HighCPU fire..
+Check Azure Alerts and You should see HighCPU fire
 </p>
 <br />
 <img src="https://imgur.com/6RkFJfy.png" alt="Azurelogo"/>
@@ -164,6 +164,9 @@ fsutil file createnew C:\temp\bigfile.txt 5000000000
 <br />
 26. Cleanup: Delete those dummy files with:
     Remove-Item C:\temp\bigfile.txt
+  </p>
+<br />
+Setting up and testing alerts proactively is a key monitoring responsibility in any kind of environment.
 
 
     

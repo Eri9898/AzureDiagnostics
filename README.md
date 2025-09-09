@@ -1,5 +1,4 @@
 # AzureDiagnostics
-How to monitor your online environment
 <p align="center">
 <img src="https://imgur.com/IrEGWDd.png" alt="Azurelogo"/>
 </p>
